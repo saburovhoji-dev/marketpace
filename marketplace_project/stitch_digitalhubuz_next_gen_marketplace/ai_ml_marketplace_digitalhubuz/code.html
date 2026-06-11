@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Geist:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            border-image: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.02)) 1;
+        }
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(194, 193, 255, 0.15);
+        }
+        body {
+            background-color: #050505;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 30%, rgba(194, 121, 255, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(75, 142, 255, 0.05) 0%, transparent 40%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#00285c",
+                        "primary": "#c2c1ff",
+                        "on-tertiary": "#510074",
+                        "background": "#131313",
+                        "on-secondary-fixed": "#001a41",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#002e69",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#4f4ccd",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-fixed": "#f6d9ff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "on-tertiary-container": "#f8deff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#1c0b9f",
+                        "tertiary-container": "#9739c6",
+                        "surface-tint": "#c2c1ff",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-container": "#4b8eff",
+                        "on-primary-container": "#e7e4ff",
+                        "tertiary": "#e8b3ff",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "surface-bright": "#3a3939",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "on-error": "#690005",
+                        "secondary": "#adc6ff",
+                        "outline": "#918f9f",
+                        "on-surface-variant": "#c7c4d6",
+                        "primary-container": "#5856d6",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed": "#310048",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed": "#0c006a",
+                        "outline-variant": "#464554",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "surface-variant": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3631b4",
+                        "secondary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-gap-lg": "32px",
+                        "stack-gap-sm": "12px",
+                        "container-margin-mobile": "20px",
+                        "container-margin-desktop": "80px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Geist"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background">
+<div class="aurora-bg"></div>
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-[0_-1px_0_rgba(255,255,255,0.1)_inset]">
+<div class="flex justify-between items-center h-16 px-container-margin-mobile md:px-container-margin-desktop">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+<h1 class="font-display-lg text-display-lg bg-gradient-to-r from-primary via-tertiary to-secondary bg-clip-text text-transparent scale-75 origin-left">DigitalHubUz</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-white/5 transition-all duration-300 p-2 rounded-full" data-icon="notifications">notifications</button>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-label-mono text-label-mono text-primary" href="#">Explore</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Developers</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+</div>
+</div>
+</div>
+</header>
+<main class="pb-32">
+<!-- Category Header -->
+<section class="relative w-full py-stack-gap-lg overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+<div class="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black,transparent)]"></div>
+</div>
+<div class="relative z-10 px-container-margin-mobile md:px-container-margin-desktop text-center md:text-left">
+<nav class="flex items-center gap-2 mb-4 justify-center md:justify-start">
+<span class="font-label-mono text-label-mono text-primary/60 uppercase">Marketplace</span>
+<span class="material-symbols-outlined text-[12px] text-primary/60" data-icon="chevron_right">chevron_right</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">AI &amp; Machine Learning</span>
+</nav>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2">AI &amp; Machine Learning</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Модели, боты и нейросети для вашего бизнеса и творчества.</p>
+</div>
+</section>
+<!-- Quick Filters -->
+<section class="px-container-margin-mobile md:px-container-margin-desktop mb-stack-gap-lg overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-3 min-w-max">
+<button class="px-6 py-2 rounded-full glass-card border-primary text-primary font-label-mono text-label-mono flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="all_inclusive">all_inclusive</span>
+                    All
+                </button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all font-label-mono text-label-mono">Models</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all font-label-mono text-label-mono">Chatbots</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all font-label-mono text-label-mono">Automation</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all font-label-mono text-label-mono">Image Gen</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all font-label-mono text-label-mono">NLP</button>
+<button class="px-6 py-2 rounded-full glass-card text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all font-label-mono text-label-mono">Scripts</button>
+</div>
+</section>
+<!-- Featured Tech Section (Bento Style) -->
+<section class="px-container-margin-mobile md:px-container-margin-desktop mb-stack-gap-lg">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Large Highlight -->
+<div class="md:col-span-8 glass-card rounded-lg p-8 relative overflow-hidden group">
+<div class="absolute -right-20 -top-20 w-80 h-80 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="flex flex-col h-full relative z-10">
+<div class="flex items-center gap-2 mb-6">
+<span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-[10px] font-label-mono uppercase tracking-widest">Most Advanced</span>
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h3 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4">Enterprise Llama-3 Fine-tuned</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md">Optimized for high-throughput corporate customer service with specialized knowledge in Uzbekistan's logistics and fintech sectors.</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-auto">
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<span class="block font-label-mono text-label-mono text-primary/60 mb-1">Uptime</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">99.9%</span>
+</div>
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<span class="block font-label-mono text-label-mono text-primary/60 mb-1">API Access</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">gRPC</span>
+</div>
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<span class="block font-label-mono text-label-mono text-primary/60 mb-1">Latency</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">120ms</span>
+</div>
+<div class="p-4 rounded-lg bg-white/5 border border-white/5">
+<span class="block font-label-mono text-label-mono text-primary/60 mb-1">Tokens</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile text-primary">128k</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Metric Card -->
+<div class="md:col-span-4 glass-card rounded-lg p-6 flex flex-col justify-between border-secondary/20">
+<div>
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="electric_bolt">electric_bolt</span>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Token Efficiency</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Our models use 40% less compute power compared to standard baseline implementations.</p>
+</div>
+<button class="mt-8 w-full py-4 bg-gradient-to-r from-primary to-secondary text-on-primary font-label-mono text-label-mono rounded-full uppercase tracking-widest active:scale-95 transition-all glow-primary">Deploy Now</button>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-container-margin-mobile md:px-container-margin-desktop mb-stack-gap-lg">
+<div class="flex justify-between items-end mb-8">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile">AI Catalog</h3>
+<span class="font-label-mono text-label-mono text-on-surface-variant">42 Items Found</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<div class="glass-card rounded-lg overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Close up of an abstract glowing neural network with intricate digital threads in violet and electric blue. The background is a deep charcoal black with a soft bokeh effect from floating light particles, creating a high-end corporate AI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCujg0XRzF0r-O7PBapl4LpYvxPhCXzlg9o1ksoCUtuh8QdSNebM70I-ohnJxKVbRV7VRmJ4O2LbTQesbnS9oHjRhFRdstnrcF6u5v0eE5dI_1TSWNH_llKg9Fq8aLBjdEoSqPcouPKxe2-mMkiQsbPgzz48En1MRwwj4HbNubIiLsz06v2dCcplUcLxukLGqUY8_l_b03WUTOGv6MJtFrdTpnU7wP_2TqPhspnVtTlKMhM5a0Gxr5Tb_krOlIkXVLwgoBzie6U68hv"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<span class="px-2 py-1 glass-card text-[10px] font-label-mono text-primary border-primary/30">API Ready</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-mono text-[10px] text-on-surface-variant">By NeuronLabs Uz</span>
+</div>
+<h4 class="font-headline-lg-mobile text-xl mb-4 group-hover:text-primary transition-colors">Advanced GPT-4o Wrapper</h4>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div>
+<span class="block text-[10px] font-label-mono text-on-surface-variant">VERSION</span>
+<span class="font-label-mono text-label-mono">v2.4.0</span>
+</div>
+<div>
+<span class="block text-[10px] font-label-mono text-on-surface-variant">ACCURACY</span>
+<span class="font-label-mono text-label-mono">98.2%</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-display-lg text-2xl bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">$149.00</span>
+<button class="material-symbols-outlined p-3 rounded-full border border-white/10 hover:bg-white/10 transition-colors" data-icon="shopping_bag">shopping_bag</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="glass-card rounded-lg overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A macro shot of shimmering digital code lines cascading in a futuristic terminal interface. The colors are dominated by neon violet and electric blue highlights over a dark obsidian background, embodying a sleek and professional cybersecurity or automation script theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCHtT1JYIXIZg-8UoTTkh4e6ojip3MVtanjmNaAct-HucCSaEv7SHilbWx3yFW3hKSQ11WNTy__thznpmAzJVfSvLkBf-pqL5dThyC50eTWcNs9V27NLo4Ty-r3MPMcMiIeumnGDGPV_L0b_h8efLFZxKNffxEA0SmfsMnpwSgN1efVgnLhtiELGnMbAqxonD2_dJdP9vYwRd-Yd9hu-fGdZwoZpKXgWzkBY9LgW8AQHCvVEnFGomwdsgWEN7CVk_5DLOMJ259KVSa"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<span class="px-2 py-1 glass-card text-[10px] font-label-mono text-primary border-primary/30">Open Source</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-mono text-[10px] text-on-surface-variant">By ScriptMaster</span>
+</div>
+<h4 class="font-headline-lg-mobile text-xl mb-4 group-hover:text-primary transition-colors">Midjourney Automation Script</h4>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div>
+<span class="block text-[10px] font-label-mono text-on-surface-variant">LATENCY</span>
+<span class="font-label-mono text-label-mono">45ms</span>
+</div>
+<div>
+<span class="block text-[10px] font-label-mono text-on-surface-variant">SUPPORT</span>
+<span class="font-label-mono text-label-mono">24/7</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-display-lg text-2xl bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">$89.00</span>
+<button class="material-symbols-outlined p-3 rounded-full border border-white/10 hover:bg-white/10 transition-colors" data-icon="shopping_bag">shopping_bag</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="glass-card rounded-lg overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="A stylized 3D render of a futuristic robot brain composed of crystalline structures glowing with internal light. Soft neon violet and icy blue light spills across the facets in a dark space-black environment, conveying ultra-premium technological sophistication and machine intelligence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE26foRXONDmAUlTsCOfwq6M25A3NpKOWctIt05Bph_GYU1rN4sVSKX6TmvB-e4Pw_XZjDE3yejfG1XB9UmfrhzCOYDdFWfXYhGFrmY6NwA5OKlB9hVWl2j2Lvbj8VllDqcwLL6fmqGmQqFbG_P4GX3iTZskhx7b7PtR00XiK97Gth_E2RtOWdG7BtaetOBee6e6PDUwTQoKRyxlsfQV-IKn77MwrLGAYZtSCJtmJNvfFyvP6fuOdNwFRUwSkuLg4GUGHKI6i4HehW"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<span class="px-2 py-1 glass-card text-[10px] font-label-mono text-primary border-primary/30">Verified Author</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-mono text-[10px] text-on-surface-variant">By Tashkent-AI</span>
+</div>
+<h4 class="font-headline-lg-mobile text-xl mb-4 group-hover:text-primary transition-colors">Custom NLP Uzbek Pack</h4>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div>
+<span class="block text-[10px] font-label-mono text-on-surface-variant">DATASET</span>
+<span class="font-label-mono text-label-mono">1.2B Tkn</span>
+</div>
+<div>
+<span class="block text-[10px] font-label-mono text-on-surface-variant">MODELS</span>
+<span class="font-label-mono text-label-mono">Mix-8x7b</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-display-lg text-2xl bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">$299.00</span>
+<button class="material-symbols-outlined p-3 rounded-full border border-white/10 hover:bg-white/10 transition-colors" data-icon="shopping_bag">shopping_bag</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Author Spotlight -->
+<section class="px-container-margin-mobile md:px-container-margin-desktop mb-stack-gap-lg">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-8">Top AI Developers</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-6 glass-card rounded-lg flex items-center gap-4 group cursor-pointer hover:border-primary/50 transition-all">
+<div class="relative">
+<img alt="Author" class="w-16 h-16 rounded-full object-cover border-2 border-white/5 group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVtabhTHkkIFZhmGr-0lZ1W-sQ3CkRP1beG8wAXdW1enVYh4yRlNKGgYbrOdWSHQ-QrVZxcfQWfPYf7VZTl_iP4u3MEoPok35qnqroTaBqG7f5b4dSnK0nH83r95rQNaEHH765pbWIVWbQP7JHd0MRsbcha8yeEmg5MEVvb-ni_pWjGOQtGNsWftW9AGY58NLEsEMyeHppybFN6xTqvrIRe2uaxGLVuKSQ0tSA2AOjdF13zCClY3cppqipCaGDzqrgz9age0xNAm9I"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full p-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div>
+<h5 class="font-headline-lg-mobile text-lg">Alisher X.</h5>
+<p class="font-label-mono text-[10px] text-on-surface-variant mb-2">Neural Network Architect</p>
+<span class="px-2 py-0.5 bg-white/10 text-[10px] font-label-mono rounded-full text-secondary">Tech Expert</span>
+</div>
+</div>
+<div class="p-6 glass-card rounded-lg flex items-center gap-4 group cursor-pointer hover:border-primary/50 transition-all">
+<div class="relative">
+<img alt="Author" class="w-16 h-16 rounded-full object-cover border-2 border-white/5 group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlLPo9iTGhSlkyoldERrqm657U6buw19zy4QiA6QlcJTC2aaKHic8S1Y7B2Mp2Q7C1mVzpTczj0FpnZXrVTr_ZQMC1sjlWoxwn5gCVlYzd7S4bm4MRSONAzgQWk8fea9UVUpmhtL6gUg21PZyEu8v2F9yWlLzMO9_rBekFot4bLVrdBoOgQKMHiugZXV30eDDGC1MQYwVqfPdl36liUqDtaDsXAEUO_QUX7Pgd2fwNTvkQpDXbp1S7kx5fNt1cInG1ubWxG6BZFsmN"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full p-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div>
+<h5 class="font-headline-lg-mobile text-lg">Elena S.</h5>
+<p class="font-label-mono text-[10px] text-on-surface-variant mb-2">NLP Specialist</p>
+<span class="px-2 py-0.5 bg-white/10 text-[10px] font-label-mono rounded-full text-secondary">Tech Expert</span>
+</div>
+</div>
+<div class="p-6 glass-card rounded-lg flex items-center gap-4 group cursor-pointer hover:border-primary/50 transition-all">
+<div class="relative">
+<img alt="Author" class="w-16 h-16 rounded-full object-cover border-2 border-white/5 group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP4jL8mG0SCtPNkEC_8FqFrb0e44Qg0apoNw076uyAiv6CsYRw5rSXfSfyaHzEbWNI3lyvQF3KMsJn-rk5SyHpTyuRu2SCu_khxNSk0C7_k7Ey6kaknbxvUb6oHhsdaIrcAeM3iFZCt6lDv3rZtZrQmFmTcOzeubwdOXDU2MIqdeN0GulVcbZ5eWIeNrhhHGG2Zs5dQX50jY0A1XmB_R6TMuN9p9OuK1YKIZidvOevhZzj1FyKpEMSpF8C4Y36sletg61yudqIuXQ3"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full p-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div>
+<h5 class="font-headline-lg-mobile text-lg">Javohir T.</h5>
+<p class="font-label-mono text-[10px] text-on-surface-variant mb-2">Automation Engineer</p>
+<span class="px-2 py-0.5 bg-white/10 text-[10px] font-label-mono rounded-full text-secondary">Tech Expert</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_24px_rgba(194,193,255,0.1)] rounded-t-lg">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-mono text-label-mono">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(194,193,255,0.8)] active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="grid_view" data-weight="fill" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-mono text-label-mono">Categories</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-mono text-label-mono">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-mono text-label-mono">Wallet</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono">Profile</span>
+</button>
+</nav>
+<!-- Footer -->
+<footer class="hidden md:flex flex-col md:flex-row justify-between items-center px-container-margin-desktop py-stack-gap-lg gap-stack-gap-sm bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex items-center gap-6">
+<span class="font-display-lg text-display-lg text-primary scale-50 origin-left">DigitalHubUz</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 DigitalHubUz. Frontier Technology Uzbekistan.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Terms</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-tertiary transition-colors" href="#">API</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise Llama-3 Fine-tuned | DigitalHubUz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#00285c",
+                        "primary": "#c2c1ff",
+                        "on-tertiary": "#510074",
+                        "background": "#050505",
+                        "on-secondary-fixed": "#001a41",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#002e69",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#4f4ccd",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-fixed": "#f6d9ff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "on-tertiary-container": "#f8deff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#1c0b9f",
+                        "tertiary-container": "#9739c6",
+                        "surface-tint": "#c2c1ff",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-container": "#4b8eff",
+                        "on-primary-container": "#e7e4ff",
+                        "tertiary": "#e8b3ff",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "surface-bright": "#3a3939",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "on-error": "#690005",
+                        "secondary": "#adc6ff",
+                        "outline": "#918f9f",
+                        "on-surface-variant": "#c7c4d6",
+                        "primary-container": "#5856d6",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed": "#310048",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed": "#0c006a",
+                        "outline-variant": "#464554",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "surface-variant": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3631b4",
+                        "secondary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-gap-lg": "32px",
+                        "stack-gap-sm": "12px",
+                        "container-margin-mobile": "20px",
+                        "container-margin-desktop": "80px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Geist"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .neon-glow-violet {
+            box-shadow: 0 0 20px rgba(194, 193, 255, 0.15);
+        }
+        .aurora-bg {
+            background: radial-gradient(circle at 20% 30%, rgba(88, 86, 214, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(151, 57, 198, 0.1) 0%, transparent 40%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden aurora-bg min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-[0_-1px_0_rgba(255,255,255,0.1)_inset]">
+<div class="flex justify-between items-center h-16 px-container-margin-mobile md:px-container-margin-desktop">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+<span class="font-display-lg text-headline-lg-mobile md:text-headline-lg bg-gradient-to-r from-primary via-tertiary to-secondary bg-clip-text text-transparent">DigitalHubUz</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-white/5 transition-all duration-300 p-2 rounded-full active:scale-95" data-icon="notifications">notifications</button>
+<div class="hidden md:flex gap-8">
+<a class="text-primary font-label-mono text-label-mono uppercase tracking-widest" href="#">Explore</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-mono text-label-mono uppercase tracking-widest" href="#">Marketplace</a>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-container-margin-mobile md:px-container-margin-desktop py-stack-gap-lg pb-32">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-stack-gap-lg">
+<div class="lg:col-span-7 relative group">
+<div class="aspect-video md:aspect-[16/10] rounded-lg overflow-hidden glass-card neon-glow-violet">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="A highly detailed 3D visualization of a neural network resembling a glowing digital brain. Intense beams of electric blue and neon violet light pulse through translucent synaptic pathways. The background is a deep, void-like black with subtle glassmorphic refractions, creating a high-end cyber luxury atmosphere. The lighting is dramatic, highlighting the technical complexity and frontier technology aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR-KNmudwQi4WBJk_DQcwXJOutE-xIcWOoCMdnU3aAHGl19b8vr3ZA4NXrxEHDL70laqJJdDJ6q8CTropxNR6tgb7ZSXyJnB4IcSDqcZsqR2UifjzsATJDpeHCU9t4DqdzKUp1LocipM8uQPiyK04zW3Hf_JK-_s478LCpjMnXkbeLsMK5RQDiSBsin06jTSfYL8hUeQyUps9KSntzPas5CLW2F9-g8M_XeEsdia1sYoAbyfEidwtdDJBAqsuaSp2ToZnJesAcd3w8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="inline-flex items-center px-4 py-1 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-md mb-4">
+<span class="font-label-mono text-label-mono text-primary uppercase">Large Language Model</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-white mb-2 leading-tight">Enterprise Llama-3 Fine-tuned</h1>
+<p class="text-on-surface-variant max-w-xl">The definitive neural architecture for enterprise-grade automation in the Uzbekistan market.</p>
+</div>
+</div>
+</div>
+<!-- Side Interaction Panel -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Pricing & Purchase -->
+<div class="glass-card p-stack-gap-sm rounded-lg flex flex-col gap-stack-gap-sm">
+<div class="flex justify-between items-end">
+<div>
+<span class="font-label-mono text-label-mono text-on-surface-variant uppercase">Current Price</span>
+<div class="font-display-lg text-display-lg text-white">$499.00</div>
+</div>
+<div class="flex gap-2">
+<button class="material-symbols-outlined p-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors active:scale-90" data-icon="favorite">favorite</button>
+<button class="material-symbols-outlined p-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors active:scale-90" data-icon="share">share</button>
+</div>
+</div>
+<button class="w-full py-4 rounded-lg bg-gradient-to-r from-primary to-secondary text-on-primary font-bold text-lg shadow-[0_0_24px_rgba(194,193,255,0.4)] hover:brightness-110 active:scale-95 transition-all duration-200">
+                        Buy Now
+                    </button>
+<div class="flex items-center gap-2 text-label-mono font-label-mono text-on-surface-variant justify-center py-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                        Secure transaction via FrontierPay
+                    </div>
+</div>
+<!-- Seller Info -->
+<div class="glass-card p-stack-gap-sm rounded-lg flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/30 p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional portrait of a tech architect in a dark, modern setting. He is wearing a minimalist black turtleneck, looking confidently at the camera. Soft rim lighting in blue and violet tones highlights his features, reflecting the corporate modern and cyber luxury style of the DigitalHubUz ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZq_h54oQk2_pqVZTNEUpBzYqMptBDHB_Bv0qxsa02CD8skB_xrcMlM6oAS53A0LfvUwkN6UV0cuypqysbP--gHYrwFXe1lXm5rvwFmUjnjFTB8HSq3c3blbRM36hpE6iELBRGFkrZGxBb3tmoWQVuEwhHsAm51fpYiOdx--MfuvusFcdqYJ4fZQog8B6kWVSH86i8XJKn9GWCwiYZs-k9KbCbWxJq2Ocr3iKGB2YEpXvRV_QZmPVZ-6NTSi3-g6jvm5mn1gPzstnB"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-lg-mobile text-white">Alisher X.</h3>
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex gap-2 mt-1">
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 border border-tertiary/20 text-[10px] font-label-mono text-tertiary uppercase">Tech Expert</span>
+<div class="flex items-center gap-1 text-[10px] font-label-mono text-on-surface-variant">
+<span class="material-symbols-outlined text-[12px] text-yellow-500" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                                5.0 (124 reviews)
+                            </div>
+</div>
+</div>
+<button class="px-4 py-2 rounded-full border border-white/10 hover:bg-white/5 transition-all font-label-mono text-label-mono text-primary active:scale-95">
+                        Message
+                    </button>
+</div>
+</div>
+</section>
+<!-- Stats Grid (Bento Style) -->
+<section class="mt-stack-gap-lg grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="glass-card p-6 rounded-lg group hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="api">api</span>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">API Access</div>
+<div class="text-xl font-bold text-white">gRPC / REST</div>
+</div>
+<div class="glass-card p-6 rounded-lg group hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="view_in_ar">view_in_ar</span>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Context Window</div>
+<div class="text-xl font-bold text-white">128k Tokens</div>
+</div>
+<div class="glass-card p-6 rounded-lg group hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="bolt">bolt</span>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">Avg Latency</div>
+<div class="text-xl font-bold text-white">120ms</div>
+</div>
+<div class="glass-card p-6 rounded-lg group hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="description">description</span>
+<div class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-1">License</div>
+<div class="text-xl font-bold text-white">Commercial</div>
+</div>
+</section>
+<!-- Description Section -->
+<section class="mt-stack-gap-lg grid grid-cols-1 lg:grid-cols-3 gap-stack-gap-lg">
+<div class="lg:col-span-2 space-y-6">
+<h2 class="font-headline-lg text-white border-b border-white/5 pb-4">Product Overview</h2>
+<div class="prose prose-invert max-w-none text-on-surface-variant space-y-4 font-body-md text-lg leading-relaxed">
+<p>
+                        Engineered specifically for the Central Asian technological landscape, the <span class="text-primary font-semibold">Enterprise Llama-3 Fine-tuned</span> model represents the pinnacle of localized AI intelligence. We've meticulously trained this iteration on a proprietary dataset comprising millions of logistics, financial, and legal documents specific to Uzbekistan.
+                    </p>
+<p>
+                        This model excels at high-throughput processing for fintech applications, providing sub-second reasoning for credit scoring, automated regulatory compliance, and complex multi-lingual customer support (Uzbek, Russian, English).
+                    </p>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+<li class="flex items-start gap-3 glass-card p-4 rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+<span>Native Uzbek/Russian support with nuanced dialect understanding.</span>
+</li>
+<li class="flex items-start gap-3 glass-card p-4 rounded-lg">
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+<span>Fully compatible with local data sovereignty requirements.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Metadata Sidebar -->
+<div class="space-y-stack-gap-sm">
+<h3 class="font-headline-lg-mobile text-white mb-4">Technical Details</h3>
+<div class="glass-card p-stack-gap-sm rounded-lg space-y-4">
+<div class="flex justify-between py-2 border-b border-white/5">
+<span class="text-on-surface-variant">Version</span>
+<span class="text-white font-label-mono">v3.1.2-Gold</span>
+</div>
+<div class="flex justify-between py-2 border-b border-white/5">
+<span class="text-on-surface-variant">Parameters</span>
+<span class="text-white font-label-mono">70B</span>
+</div>
+<div class="flex justify-between py-2 border-b border-white/5">
+<span class="text-on-surface-variant">Last Update</span>
+<span class="text-white font-label-mono">2 days ago</span>
+</div>
+<div class="flex justify-between py-2 border-b border-white/5">
+<span class="text-on-surface-variant">File Format</span>
+<span class="text-white font-label-mono">GGUF / ONNX</span>
+</div>
+<div class="flex justify-between py-2">
+<span class="text-on-surface-variant">Size</span>
+<span class="text-white font-label-mono">42.8 GB</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Similar Assets -->
+<section class="mt-stack-gap-lg">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-lg text-white">Related Ecosystem Assets</h2>
+<div class="flex gap-2">
+<button class="material-symbols-outlined p-2 rounded-full border border-white/10 hover:bg-white/5" data-icon="chevron_left">chevron_left</button>
+<button class="material-symbols-outlined p-2 rounded-full border border-white/10 hover:bg-white/5" data-icon="chevron_right">chevron_right</button>
+</div>
+</div>
+<div class="flex gap-gutter overflow-x-auto no-scrollbar pb-4 -mx-container-margin-mobile px-container-margin-mobile md:mx-0 md:px-0">
+<!-- Card 1 -->
+<div class="min-w-[280px] md:min-w-[320px] glass-card rounded-lg overflow-hidden group cursor-pointer hover:border-primary/40 transition-all duration-300">
+<div class="h-40 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Abstract digital rendering of a data stream flowing like liquid silver. Cyan and emerald green highlights create a sense of movement and digital liquidity. Minimalist, premium aesthetic suited for a high-tech marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqM4_c4W7DiXHDybIK-B42_wILARDd4gofdPsLBc1GU5t8iF3tS5TZDMPfNaTxBYbwlo893bU_ZlZcixqTR8pz2sJBhLNNt4OxPAME1m8qEzDz9yLms44FYjhWoZEcFs3GdeF5ruwm6GwmDMSeidNIWrs9txvGwXYy7ty9XRzA1tIP8sVv0yk_haC6HdWXBY7u4w_DeYZ1ws85KF2Qyhwc_9y2CFspKF0OEgLihfk-OrmGBCSsA3UtFV8vXCJufJoywlsN3V8b44si"/>
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold mb-1">UzLogistics Optimizer v2</h4>
+<p class="text-on-surface-variant text-sm mb-4">Route planning for Samarkand corridor.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold">$129.00</span>
+<div class="flex items-center gap-1 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-yellow-500" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.9
+                            </div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] md:min-w-[320px] glass-card rounded-lg overflow-hidden group cursor-pointer hover:border-primary/40 transition-all duration-300">
+<div class="h-40 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A microscopic view of glowing circuit board paths in deep indigo and violet light. The design is sleek and metallic, representing high-speed computing and digital precision. Cinematic lighting with deep shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3sUimeCCtABjHOGYxy8YXzO8VomnzxhuuKE1V_L6Zy2NkZD9xS7qTJDy7tdph6Abh2hrp6mKgUZqSV-XNyoXh9SdeinsD5GwkO3leVON3bWPOpSV7-632275mWqqsA_FGRXVD0j8S_ncoduyYcPjjz24tcbqvGX7ltTnlCcbktJFFtowlf7sfGyvXIpbOwjmyVqNNmPibuopkRB2mPLfwlFiIYyCiRsFRIQsovWuNfMvkdBozKiLRljVnxJKVqazTSHsJcdEiJVw6"/>
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold mb-1">Financial Sentiment API</h4>
+<p class="text-on-surface-variant text-sm mb-4">Real-time market analysis for UZS pairs.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold">$89.00</span>
+<div class="flex items-center gap-1 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-yellow-500" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.7
+                            </div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[280px] md:min-w-[320px] glass-card rounded-lg overflow-hidden group cursor-pointer hover:border-primary/40 transition-all duration-300">
+<div class="h-40 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Modern generative art featuring overlapping translucent circles in neon blue and white. The composition is airy and futuristic, suggesting interconnected systems and scalable network architectures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiewXgQJvtyP6ojOiqab4J3Vjx6VXw2__Ztrg34YSqfpQ-cxo-M052qK8TkVz5oE6iWK7_7aO3zzZxo-sS7DjJ0HN7jMxBYlCERcwxuXktspf3sQfJno1CTRWltenSWPSOTw_kpnrfL_SWJaavCbmM27hYdQ5oGmmxfmtNROnnMRkdIUQkBSyrdcZj3werByQza4MuxwPgnAC-TuRpp4L9t3Uo2IktcscvD4-s81PGKrv88hZ4H_UDrKUg6VRVntPGwDeN4aLk8G3P"/>
+</div>
+<div class="p-4">
+<h4 class="text-white font-bold mb-1">Retail Predictor Hub</h4>
+<p class="text-on-surface-variant text-sm mb-4">Demand forecasting for SME networks.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold">$199.00</span>
+<div class="flex items-center gap-1 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-yellow-500" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                                5.0
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-gap-lg bg-surface-container-lowest border-t border-outline-variant">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center px-container-margin-desktop gap-stack-gap-sm">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-display-lg text-headline-lg-mobile text-primary mb-2">DigitalHubUz</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 DigitalHubUz. Frontier Technology Uzbekistan.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">API</a>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_24px_rgba(194,193,255,0.1)] rounded-t-lg">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-mono text-[10px]">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-mono text-[10px]">Categories</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-mono text-[10px]">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-mono text-[10px]">Wallet</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-[10px]">Profile</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DigitalHubUz - Digital Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#00285c",
+                        "primary": "#c2c1ff",
+                        "on-tertiary": "#510074",
+                        "background": "#131313",
+                        "on-secondary-fixed": "#001a41",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#002e69",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#4f4ccd",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-fixed": "#f6d9ff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "on-tertiary-container": "#f8deff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#1c0b9f",
+                        "tertiary-container": "#9739c6",
+                        "surface-tint": "#c2c1ff",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-container": "#4b8eff",
+                        "on-primary-container": "#e7e4ff",
+                        "tertiary": "#e8b3ff",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "surface-bright": "#3a3939",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "on-error": "#690005",
+                        "secondary": "#adc6ff",
+                        "outline": "#918f9f",
+                        "on-surface-variant": "#c7c4d6",
+                        "primary-container": "#5856d6",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed": "#310048",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed": "#0c006a",
+                        "outline-variant": "#464554",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "surface-variant": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3631b4",
+                        "secondary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-gap-lg": "32px",
+                        "stack-gap-sm": "12px",
+                        "container-margin-mobile": "20px",
+                        "container-margin-desktop": "80px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Geist"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .aurora-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(194, 193, 255, 0.15) 0%, transparent 50%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cyber-grid {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-[0_-1px_0_rgba(255,255,255,0.1)_inset]">
+<div class="flex justify-between items-center h-16 px-container-margin-mobile md:px-container-margin-desktop">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+<h1 class="font-display-lg text-[24px] md:text-display-lg bg-gradient-to-r from-primary via-tertiary to-secondary bg-clip-text text-transparent">DigitalHubUz</h1>
+</div>
+<div class="hidden md:flex gap-stack-gap-sm items-center">
+<nav class="flex gap-6 text-on-surface-variant font-label-mono">
+<a class="text-primary transition-all duration-300" href="#">Home</a>
+<a class="hover:text-primary transition-all duration-300" href="#">Categories</a>
+<a class="hover:text-primary transition-all duration-300" href="#">Market</a>
+<a class="hover:text-primary transition-all duration-300" href="#">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:bg-white/5 p-2 rounded-full transition-all duration-300 active:scale-95" data-icon="notifications">notifications</span>
+<div class="w-10 h-10 rounded-full border border-primary/20 p-[2px]">
+<img class="w-full h-full rounded-full bg-surface-container" data-alt="A professional high-tech avatar for a digital entrepreneur, featuring a futuristic minimalist style with subtle glowing blue and violet highlights, reflecting a premium startup aesthetic in a deep black setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPbpQuTh59C0cCW8NTLHgsnzjIwfyC8o7GTFIdBdtSLuDF-0Yyiz4VvEn_BPYIKRheWPTICcuTMoR0-e_m-WnoOYm3i29YkGYXZisinlcTUh2HF3RwT6EkCpFr8InyYnNjo0-Gpru0T9Q666mnXUQGaeANetPwqDakYUfr5v7uHbTKS7qF-I7oWD6_Vk3A6_bB6Hs8dRVaRcHOUWEz0Ez34ppH6VxTiWIyiD-UsI7rgmPOxbfeta8aduLPnhIWJ814EubnVi-ZQCuw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative min-h-[751px] flex flex-col items-center justify-center pt-20 px-container-margin-mobile text-center cyber-grid overflow-hidden">
+<div class="absolute inset-0 aurora-glow pointer-events-none"></div>
+<div class="relative z-10 max-w-4xl mx-auto space-y-stack-gap-lg">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-widest">Marketplace v2.0 Live</span>
+</div>
+<h2 class="font-display-lg text-[42px] leading-tight md:text-display-lg bg-gradient-to-br from-white via-primary to-tertiary bg-clip-text text-transparent">
+                    Покупай и продавай цифровое будущее
+                </h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">
+                    Первая в Узбекистане премиальная платформа для обмена цифровыми активами, софтом и услугами в сфере высоких технологий.
+                </p>
+<!-- Glassmorphism Search Bar -->
+<div class="relative max-w-2xl mx-auto w-full group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-tertiary/20 rounded-xl blur-lg opacity-50 group-focus-within:opacity-100 transition-opacity"></div>
+<div class="relative flex items-center glass-card rounded-xl p-2 h-16">
+<span class="material-symbols-outlined px-4 text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-white font-body-md placeholder:text-outline" placeholder="Поиск ботов, скриптов, дизайна..." type="text"/>
+<button class="bg-gradient-to-r from-primary to-secondary text-on-primary-container px-8 h-full rounded-lg font-headline-lg-mobile md:text-[16px] text-[14px] font-bold hover:shadow-[0_0_20px_rgba(194,193,255,0.4)] active:scale-95 transition-all">
+                            Начать торговлю
+                        </button>
+</div>
+</div>
+<!-- Live Stats -->
+<div class="flex flex-wrap justify-center gap-stack-gap-lg pt-stack-gap-lg border-t border-white/5">
+<div class="flex items-center gap-3">
+<div class="flex -space-x-3">
+<img class="w-8 h-8 rounded-full border-2 border-background" data-alt="User avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ9TxgqR-PYNFRq0k0n-XatcImO8z-SYPCC16rwzDBqwKpKr7Haug5bT2aGJljMDCEdREGNJpAUUYVSglmMwmoY4vbhtO2EvJW7RtRO7b-OcCrHQcoNOvcw4_d1l-Iv3CP18coctBHzkJUKWBwJpm312-KFRCzxI2T4nIJdsXIUKFbvPsexfntV73M5yIqUJ1MD0MCmd3vaeosk3zs399UD3d6bZrzFqQdVBJJ21-EBZw7ImOrEevpdDJmTvqFeYz-i_HJJS2YHlUD"/>
+<img class="w-8 h-8 rounded-full border-2 border-background" data-alt="User avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ0RJJB3m0O7E_2e5Tcm2EVA8tYMjAU9G7eKE_X0PW7Z3iGXlgqCTf-V13gYUNjEZ1cXoScnodEYAIJShNuC2YqfdZltAk7xLNaXdolvNxiW9NwjXqYC-C4f9LvBmgpK6ekGOBfUSnniOUjA3tfhLy8Q9Q8EQsxXPMQ_BOoBMhlLKT8ZN6llNNaSFv20gMccF_3dfTgDghaXbI8_a25M383Gz4jJYBHNz2cs3pkP60CbzzWhXYo3c3oN1nbm5eV53xOo_bknmhXKew"/>
+<img class="w-8 h-8 rounded-full border-2 border-background" data-alt="User avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEq1ythG_uoMPNS8cQ12DjXzRP2h_xRdiBtxy0EMpqiuxM4CIGXOt-McigscNRv_uIRqgKfP-GhqOKGBrc5Pz-EqkTy9o5iKIv-ruajvuP8vu8d5qQl68S0kt0DEgpAEwYA-bGCfoDcGjVwEj-hx76s_aia98JvT2oB4TjvCUXbKD0Uy_qRCH9LKOOR07eu4z3q4zCt_yQuLMEORVwlXEr36o09T97DcVPRahTftW6XXG1Y_NoF90ZofxWTGdfDOeho-Nr1vhmZYTI"/>
+</div>
+<span class="font-label-mono text-label-mono text-on-surface-variant">
+<b class="text-primary">1,240+</b> Онлайн сейчас
+                        </span>
+</div>
+<div class="flex items-center gap-2 font-label-mono text-label-mono text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified">verified</span>
+                        Безопасные сделки
+                    </div>
+<div class="flex items-center gap-2 font-label-mono text-label-mono text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="bolt">bolt</span>
+                        Мгновенная доставка
+                    </div>
+</div>
+</div>
+</section>
+<!-- Trending Categories (Bento) -->
+<section class="py-stack-gap-lg px-container-margin-mobile md:px-container-margin-desktop space-y-stack-gap-lg">
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<p class="font-label-mono text-primary uppercase tracking-widest">Explore</p>
+<h3 class="font-headline-lg-mobile md:text-headline-lg">Популярные категории</h3>
+</div>
+<button class="text-primary font-label-mono flex items-center gap-1 hover:gap-2 transition-all">
+                    Смотреть все <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-6 gap-gutter">
+<!-- AI -->
+<div class="glass-card col-span-2 row-span-1 p-6 rounded-lg group hover:bg-white/5 transition-all cursor-pointer overflow-hidden relative">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px] text-primary" data-icon="psychology">psychology</span>
+</div>
+<div class="relative z-10 flex flex-col justify-between h-full">
+<span class="material-symbols-outlined text-primary p-3 bg-primary/10 w-fit rounded-lg mb-8" data-icon="psychology">psychology</span>
+<div>
+<h4 class="font-headline-lg-mobile text-[18px]">AI &amp; ML</h4>
+<p class="font-label-mono text-on-surface-variant text-[10px]">124 Сервиса</p>
+</div>
+</div>
+</div>
+<!-- Gaming -->
+<div class="glass-card p-6 rounded-lg group hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-tertiary p-3 bg-tertiary/10 w-fit rounded-lg mb-4" data-icon="sports_esports">sports_esports</span>
+<h4 class="font-label-mono">Gaming</h4>
+</div>
+<!-- Bots -->
+<div class="glass-card p-6 rounded-lg group hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-secondary p-3 bg-secondary/10 w-fit rounded-lg mb-4" data-icon="smart_toy">smart_toy</span>
+<h4 class="font-label-mono">Bots</h4>
+</div>
+<!-- Design -->
+<div class="glass-card p-6 rounded-lg group hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary p-3 bg-primary/10 w-fit rounded-lg mb-4" data-icon="palette">palette</span>
+<h4 class="font-label-mono">Design</h4>
+</div>
+<!-- SMM -->
+<div class="glass-card p-6 rounded-lg group hover:bg-white/5 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-tertiary p-3 bg-tertiary/10 w-fit rounded-lg mb-4" data-icon="campaign">campaign</span>
+<h4 class="font-label-mono">SMM</h4>
+</div>
+</div>
+</section>
+<!-- Live Activity Feed -->
+<section class="bg-surface-container-lowest border-y border-white/5 py-4 overflow-hidden whitespace-nowrap">
+<div class="flex items-center gap-12 animate-marquee">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+<p class="font-label-mono text-on-surface-variant"><span class="text-white">@dev_uz</span> купил <span class="text-primary">Telegram Premium Bot</span></p>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(194,193,255,0.6)]"></span>
+<p class="font-label-mono text-on-surface-variant">Новый продавец: <span class="text-white">NeoDesign</span></p>
+</div>
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+<p class="font-label-mono text-on-surface-variant"><span class="text-white">@shark_pro</span> продал <span class="text-tertiary">Landing Page Template</span></p>
+</div>
+<!-- Repeating for effect -->
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+<p class="font-label-mono text-on-surface-variant"><span class="text-white">@alex_it</span> купил <span class="text-primary">Admin Dashboard SDK</span></p>
+</div>
+</div>
+</section>
+<!-- Trending Services -->
+<section class="py-stack-gap-lg px-container-margin-mobile md:px-container-margin-desktop space-y-stack-gap-lg">
+<h3 class="font-headline-lg-mobile md:text-headline-lg">Актуальные предложения</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<div class="glass-card rounded-lg overflow-hidden group">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional high-tech dashboard interface design on a dark glass surface, glowing with electric blue and neon violet accents, set in a clean minimalist environment representing modern software excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwltRgHiNLQP6EqBkzLLaBtHxehZxHdd03ji_jYy2xxtxdVEbYxgXEQk5gu_OAm_j-JtqwHgqZuvAe8btQK2PgHVaF2kYjqoPo1JYOskF3l7PuQnExsbOOs_5nY6siFVLIGSmHpgEfDb8-tbvpcRRvS-m0MNPVPKcY45ZIhRow0ViQ6yXPHscQPlZLBsxdpHkTM9AGQcwcJwK9FIxDjuLdv3Imaqk7yucnwbCI2aGz5-MmdhTEEIrV4T_iNWjHt-XhOsVYzNGdftca"/>
+<div class="absolute top-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-label-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="visibility">visibility</span> 452
+                        </div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<h4 class="font-headline-lg-mobile text-[18px]">Ultimate SaaS Dashboard</h4>
+<span class="font-headline-lg-mobile text-primary">$49</span>
+</div>
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full bg-surface-container" data-alt="Seller avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYf0WXfzApEOXzMtiegjiMoU2BO1fNJHNkIc_x5Dx1Xf3x1esPjr3jfsqZIU7bR-sgz030SV1w26rMbhDpAbWWQseO2drhgUAZ5_4s7TUPg4jMlpyceUblOVkeitTsmoz4NxwGxCg4lCy5aL4UVRCZDDYZMzpzyDkYNfsPJMghC-O0B5Tqy8AznSogThKJiOlG9Wq6zMXr-Tdd-8AUhhxwY1KFIMrnGD_8dyDTaAOqT9DbUpRj_MMpuVnWp-bHYuSCqf5fP6ykTcFB"/>
+<span class="font-label-mono text-[12px] text-on-surface-variant">CoreSystems • 4.9 ★</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-white/5 hover:bg-primary/20 text-on-surface font-label-mono py-3 rounded-lg transition-colors border border-white/10">Подробнее</button>
+<button class="flex-1 bg-primary text-on-primary font-label-mono py-3 rounded-lg hover:shadow-[0_0_15px_rgba(194,193,255,0.4)] transition-all">Купить</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="glass-card rounded-lg overflow-hidden group">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Futuristic AI neural network concept visualization with glowing interconnected nodes and fiber optic light paths on a deep charcoal background, highlighting high-speed data processing and technological precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfTGDOilOWY5sen9MpXDNeYOWt-IOvjafDPfel2sZ4_cQPHRpSNSZHxnSFpu6GKxGBiaQooGempc7Pu3jYriLFrsL2As05yXhE9ydj3hoN-EV15LDlkzqn5sCr83vpZvWAqdMW487qJJRMHrbvajJ_XBCSqivK6fVeoXwlBXtCpzHWLOnTlwGalG2siiPTTcNVN7Id1FWikUHBV6NL5W6XhjP8_O0N93q5e20izoan3eFqtwUkC82uktDpc6W5KbqlgxJeVCjzE1TF"/>
+<div class="absolute top-3 right-3 bg-tertiary/20 backdrop-blur-md px-3 py-1 rounded-full border border-tertiary/30 text-label-mono text-tertiary">HOT</div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<h4 class="font-headline-lg-mobile text-[18px]">AI Image Generator Bot</h4>
+<span class="font-headline-lg-mobile text-primary">$120</span>
+</div>
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full bg-surface-container" data-alt="Seller avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhB_PTNZfyu-Wh2QHpA_lPnHGARTQMPrBpiprYEWO_3shEU6xh4oGaWMq3rtQ635T2hxxaE1DKFAfYLGnjlYztMPoBdo78403XhzCjrl_ORyQgXCCVJ8vRQMb4V3y0tzyd5B0SRjLnraUyFlnIGScmlUkC_UYUnro25A42pfuYs50d_w23oHK_gpcdrlP9fA1DZodAw9ZHKuGMtN8nNWqJpT4VvwPvTHyo1SotK1q93AjecjS_X-bMayd3LlKNmmKx3B4S4MpCaJ7X"/>
+<span class="font-label-mono text-[12px] text-on-surface-variant">AI-Lab Uz • 5.0 ★</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-white/5 hover:bg-primary/20 text-on-surface font-label-mono py-3 rounded-lg transition-colors border border-white/10">Подробнее</button>
+<button class="flex-1 bg-primary text-on-primary font-label-mono py-3 rounded-lg hover:shadow-[0_0_15px_rgba(194,193,255,0.4)] transition-all">Купить</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="glass-card rounded-lg overflow-hidden group">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Cybersecurity concept illustration with a sleek digital padlock icon glowing in neon cyan, surrounded by complex circuit board patterns and binary data streams on a dark matte surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPjVo3MNsYdkWEcESVQpzl4OuQ9LxEZERJ6-eKgkMWq8crl2jTBvwpruHSTNpBcK2YU5gYxJSLh_aDq02cQfDnxNYCALKq6DNEKpMNsqEn13KDOwWLs9EYWUBRShFN5hbL9HzJxSZ245_V1F_S-47oFSEOHnscjk9NgR9EfGbkJSA6LvwCJecLoslEGJgvkAN6mdmms-dYbQMrAwHsFfwHIv3o0suzpTQdh9XRFwp3h3lvYFKWuTNHGv80jjQTmEV6UXpCbP9b6VGB"/>
+<div class="absolute top-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-label-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="verified">verified</span> Verified
+                        </div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-start">
+<h4 class="font-headline-lg-mobile text-[18px]">Security Script Pro</h4>
+<span class="font-headline-lg-mobile text-primary">$25</span>
+</div>
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full bg-surface-container" data-alt="Seller avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4h05b8zoEEi9b5YpQkp6SnDjQTbec-P0BrMH6kMOgcpLOpSWolsP9pOC8yFQh_6IEAXpHNKqqa41qqnnVnN6MGMXMYUWz8EKJGhcrUIKX2LLC6cV6Hp-eFm8fqJkv8oqmFgzE9pIT-utndo9Qbxh_UU9Wju6Ng82-XPxKe9Bm4wzCIRfPuksil7-QP6IGGp7X5K7ihwgvzAtdDI3vUtDmAdJ3A9Llwogt74ggim5ZWugYpFXli6gHvdFYD_7-1lNu2Pfzr8kkHMFM"/>
+<span class="font-label-mono text-[12px] text-on-surface-variant">GhostSec • 4.8 ★</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-white/5 hover:bg-primary/20 text-on-surface font-label-mono py-3 rounded-lg transition-colors border border-white/10">Подробнее</button>
+<button class="flex-1 bg-primary text-on-primary font-label-mono py-3 rounded-lg hover:shadow-[0_0_15px_rgba(194,193,255,0.4)] transition-all">Купить</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Sellers -->
+<section class="py-stack-gap-lg px-container-margin-mobile md:px-container-margin-desktop">
+<h3 class="font-headline-lg-mobile md:text-headline-lg mb-stack-gap-lg">Топ Продавцов</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Seller 1 -->
+<div class="glass-card p-6 rounded-lg text-center space-y-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-20 h-20 mx-auto">
+<img class="w-full h-full rounded-full border-2 border-primary p-1 bg-surface-container" data-alt="Top seller profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtHur0VuBGPifXDfouxsVjVNMvCXk1BiK1cAquOZZBEhEkbE1BwubqcgIAiLyV1bnDmcijCzkGgnkF5lzlLk_mNRvINn6VsI5lGzTQ-kySTXcOBfec1zL0bRzz57AmkhwR7RGhKEGrXEuN_FMaBFkiSXgp-QtuI_is_vCQYNYDXscf5SP969hYzGKLSqoCAR2e1MLMHj5HQ9AsSB6lMFSqOkQd6NxYiiP2d0maiDcVUDff8Wc1kLdELI3YWug6eQDlFRgZkqVKQOpp"/>
+<div class="absolute bottom-0 right-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center border-2 border-background">
+<span class="material-symbols-outlined text-[12px] text-on-primary font-bold" data-icon="check">check</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile text-[16px]">UzDev_Official</h4>
+<p class="font-label-mono text-primary text-[11px]">Elite Seller</p>
+</div>
+<div class="flex justify-around pt-2 border-t border-white/5">
+<div class="text-center">
+<p class="font-label-mono text-[10px] text-outline">Earnings</p>
+<p class="font-headline-lg-mobile text-[14px] text-white">$14.2k</p>
+</div>
+<div class="text-center">
+<p class="font-label-mono text-[10px] text-outline">Rating</p>
+<p class="font-headline-lg-mobile text-[14px] text-white">5.0 ★</p>
+</div>
+</div>
+</div>
+<!-- Seller 2 -->
+<div class="glass-card p-6 rounded-lg text-center space-y-4 relative overflow-hidden group">
+<div class="relative w-20 h-20 mx-auto">
+<img class="w-full h-full rounded-full border-2 border-tertiary p-1 bg-surface-container" data-alt="Top seller profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFIWm89yHmLwNBzy1t703CK_vjCoh0CBeif0DbyseokKoYhZmF8WDdmgVmMcrlx7iGovSIBV101cZvvbUOw0SjpkzoxQWcVchlwp6bjmdBpqUx3IA0yvheGfyfXfNDXFxAxwMcAZz7Mi3gPD7UQEqxEM7g4BUdhPjeFWmDxLzv8NCBAMt2zKJ2hvmVSkFxEeVw-ikKkzgfyymVbynhR29uWyW15oC-iQTxKl2a3SC5hsyoIjuRY6-44Gkdm0Q-FuLfiLME9YAJsmVV"/>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile text-[16px]">CreativeMind</h4>
+<p class="font-label-mono text-tertiary text-[11px]">Pro Designer</p>
+</div>
+<div class="flex justify-around pt-2 border-t border-white/5">
+<div class="text-center">
+<p class="font-label-mono text-[10px] text-outline">Earnings</p>
+<p class="font-headline-lg-mobile text-[14px] text-white">$8.5k</p>
+</div>
+<div class="text-center">
+<p class="font-label-mono text-[10px] text-outline">Rating</p>
+<p class="font-headline-lg-mobile text-[14px] text-white">4.9 ★</p>
+</div>
+</div>
+</div>
+<!-- More Sellers could go here -->
+</div>
+</section>
+<!-- Why DigitalHubUz -->
+<section class="py-stack-gap-lg px-container-margin-mobile md:px-container-margin-desktop">
+<div class="glass-card rounded-lg p-10 flex flex-col md:flex-row items-center gap-stack-gap-lg border-primary/20 bg-primary/5">
+<div class="md:w-1/2 space-y-6">
+<h3 class="font-display-lg text-[32px] md:text-[40px] leading-tight">Почему выбирают нас?</h3>
+<p class="text-on-surface-variant font-body-md">Мы создаем экосистему, где каждый цифровой продукт находит своего покупателя за считанные секунды.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+<div>
+<h5 class="font-label-mono text-white">Скорость</h5>
+<p class="font-label-mono text-[11px] text-on-surface-variant">Моментальный доступ к покупкам</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="shield">shield</span>
+<div>
+<h5 class="font-label-mono text-white">Безопасность</h5>
+<p class="font-label-mono text-[11px] text-on-surface-variant">Все сделки под защитой</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="category">category</span>
+<div>
+<h5 class="font-label-mono text-white">Разнообразие</h5>
+<p class="font-label-mono text-[11px] text-on-surface-variant">От скриптов до AI-моделей</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="support_agent">support_agent</span>
+<div>
+<h5 class="font-label-mono text-white">Поддержка 24/7</h5>
+<p class="font-label-mono text-[11px] text-on-surface-variant">Всегда готовы помочь</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-1/2 relative group">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-50"></div>
+<img class="relative z-10 w-full rounded-lg border border-white/10" data-alt="A highly detailed 3D visualization of a futuristic marketplace node, featuring complex glowing filaments and translucent glass structures on a dark background, representing a secure and high-speed digital exchange ecosystem." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNn3ZI0RrINO_DAUSiezmafbm5JiojURhPKOlrYCLyQ6u4KIzM31jK7gXxkElq-e7G3B2_oRRYoHanXEFpBEj0sUeTQW5sWV-bI1RT-tyC0sqGtUxDSMwEncy4H0Cdsiew2etnjWFtkTXIZ7DQxojWRu_EbPU4nStIwnRBjet_2wNHNaz5bcU5Es9P9vZ8gcrW8hg6HYCbRlfr_OXMNvyoi0jqkryKdru8gy4pGVKfZvcZyRa9ZcIrVXYUnR8HmCAALuTwj5yycRfc"/>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-stack-gap-lg border-t border-outline-variant px-container-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-stack-gap-sm mb-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="hub">hub</span>
+<h2 class="font-display-lg text-[24px] text-primary">DigitalHubUz</h2>
+</div>
+<div class="flex flex-wrap gap-6 font-body-md text-on-surface-variant">
+<a class="hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="hover:text-tertiary transition-colors" href="#">Terms</a>
+<a class="hover:text-tertiary transition-colors" href="#">Support</a>
+<a class="hover:text-tertiary transition-colors" href="#">API</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-8 text-on-surface-variant font-label-mono text-[12px]">
+<p>© 2024 DigitalHubUz. Frontier Technology Uzbekistan.</p>
+<div class="flex gap-4 mt-4 md:mt-0">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span>Built for the Digital Future</span>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-white/10 shadow-[0_-8px_24px_rgba(194,193,255,0.1)] rounded-t-lg">
+<a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(194,193,255,0.8)] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-mono text-label-mono mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-mono text-label-mono mt-1">Categories</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-mono text-label-mono mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-mono text-label-mono mt-1">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-mono text-label-mono mt-1">Profile</span>
+</a>
+</nav>
+</main>
+<style>
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 30s linear infinite;
+        }
+    </style>
+</body></html>

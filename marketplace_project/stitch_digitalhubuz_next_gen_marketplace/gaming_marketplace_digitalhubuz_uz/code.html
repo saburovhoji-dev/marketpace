@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>O'yinlar - DigitalHubUz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Geist font simulation using Inter as fallback for standard web display -->
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: #e5e2e1; }
+        .font-display-lg { font-family: 'Inter', sans-serif; }
+        .font-headline-lg { font-family: 'Inter', sans-serif; }
+        .font-label-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: #050505;
+        }
+        .aurora-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(194, 193, 255, 0.08) 0%, rgba(194, 193, 255, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#00285c",
+                        "primary": "#c2c1ff",
+                        "on-tertiary": "#510074",
+                        "background": "#131313",
+                        "on-secondary-fixed": "#001a41",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-background": "#e5e2e1",
+                        "on-secondary": "#002e69",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "inverse-on-surface": "#313030",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#4f4ccd",
+                        "surface-container-high": "#2a2a2a",
+                        "tertiary-fixed": "#f6d9ff",
+                        "on-secondary-fixed-variant": "#004493",
+                        "on-tertiary-container": "#f8deff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-primary": "#1c0b9f",
+                        "tertiary-container": "#9739c6",
+                        "surface-tint": "#c2c1ff",
+                        "primary-fixed": "#e2dfff",
+                        "secondary-container": "#4b8eff",
+                        "on-primary-container": "#e7e4ff",
+                        "tertiary": "#e8b3ff",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "surface-bright": "#3a3939",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c2c1ff",
+                        "on-error": "#690005",
+                        "secondary": "#adc6ff",
+                        "outline": "#918f9f",
+                        "on-surface-variant": "#c7c4d6",
+                        "primary-container": "#5856d6",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed": "#310048",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed": "#0c006a",
+                        "outline-variant": "#464554",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "surface-variant": "#353534",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "on-primary-fixed-variant": "#3631b4",
+                        "secondary-fixed-dim": "#adc6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-gap-lg": "32px",
+                        "stack-gap-sm": "12px",
+                        "container-margin-mobile": "20px",
+                        "container-margin-desktop": "80px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<div class="aurora-bg">
+<div class="aurora-glow top-[-100px] right-[-100px]"></div>
+<div class="aurora-glow bottom-[-100px] left-[-100px]" style="background: radial-gradient(circle, rgba(232, 179, 255, 0.06) 0%, rgba(232, 179, 255, 0) 70%);"></div>
+</div>
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/10 shadow-[0_-1px_0_rgba(255,255,255,0.1)_inset]">
+<div class="flex justify-between items-center h-16 px-container-margin-mobile">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">hub</span>
+<span class="font-display-lg text-[20px] bg-gradient-to-r from-primary via-tertiary to-secondary bg-clip-text text-transparent">DigitalHubUz</span>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-white/5 p-2 rounded-full transition-all duration-300">search</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-white/5 p-2 rounded-full transition-all duration-300">notifications</button>
+</div>
+</div>
+</header>
+<main class="pb-32">
+<!-- Category Header -->
+<section class="px-container-margin-mobile pt-stack-gap-lg pb-stack-gap-sm">
+<div class="relative">
+<div class="absolute -top-10 -left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary relative z-10">Gaming</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Akkuntlar, skinlar va o'yin qiymatlari</p>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="mt-stack-gap-sm">
+<div class="flex overflow-x-auto no-scrollbar gap-3 px-container-margin-mobile pb-4">
+<button class="flex-shrink-0 px-4 py-2 rounded-full bg-primary text-on-primary font-label-mono text-label-mono shadow-[0_0_12px_rgba(194,193,255,0.3)]">Hammasi</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full glass-card text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors">Steam</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full glass-card text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors">Epic Games</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full glass-card text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors">Mobile</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full glass-card text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors">PSN</button>
+<button class="flex-shrink-0 px-4 py-2 rounded-full glass-card text-on-surface-variant font-label-mono text-label-mono hover:text-primary transition-colors">Xbox</button>
+</div>
+<div class="px-container-margin-mobile flex gap-stack-gap-sm overflow-x-auto no-scrollbar pb-2">
+<div class="flex items-center gap-2 glass-card px-3 py-1.5 rounded-full text-label-mono font-label-mono text-on-surface-variant whitespace-nowrap"><span class="material-symbols-outlined text-[16px]">payments</span> Narx oralig'i</div>
+<div class="flex items-center gap-2 glass-card px-3 py-1.5 rounded-full text-label-mono font-label-mono text-on-surface-variant whitespace-nowrap"><span class="material-symbols-outlined text-[16px]">star</span> Reyting 4.5+</div>
+</div>
+</section>
+<!-- Featured Listings -->
+<section class="mt-stack-gap-lg px-container-margin-mobile">
+<h2 class="font-label-mono text-label-mono text-tertiary mb-4 tracking-widest uppercase">DIQQAT MARKAZIDA</h2>
+<div class="relative glass-card rounded-lg overflow-hidden group">
+<div class="aspect-[16/9] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A cinematic high-resolution shot of a professional gaming setup in a dark room with vibrant neon cyan and violet lighting. The scene features a sleek mechanical keyboard with glowing keys and a high-end mouse on a large pad, reflecting off a polished black surface. The atmosphere is intense, futuristic, and premium, perfectly capturing the cyber luxury aesthetic of professional esports." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYnVU2-X528wax3EJA-_Z5AmSPlja_rr9VanY-szwjoP-e8bfR_R_xFd1qfI8aQtTjD-NzBnNILg1ZFLFdjohdq_7S0yqJ0XoIpibREB1XdOTTBvjgw_609Szib6tDRHUimcx0VjI7ovDFwDZ_dctaJpEe0r3QDeXaZKvUoTljQF_Ck1eNJ4oTKtmUPVX84QrnNDPNHipG0e0wxhR8wafwkZQjiHfBTW-PZ1XYXsV9uCL0CT0WF_WgL90IdcyGkz5XvzI8jblQbF3R"/>
+</div>
+<div class="p-4 bg-gradient-to-t from-background via-background/90 to-transparent">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-white">Global Elite CS2</h3>
+<p class="font-body-md text-on-surface-variant text-sm">Steam Community Rank 50+</p>
+</div>
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full font-label-mono text-[10px] border border-primary/30">FEATURED</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mb-4">
+<div class="glass-card p-2 rounded flex flex-col items-center">
+<span class="text-tertiary font-label-mono text-[10px]">INVENTAR</span>
+<span class="text-white font-bold text-sm">$4,200</span>
+</div>
+<div class="glass-card p-2 rounded flex flex-col items-center">
+<span class="text-tertiary font-label-mono text-[10px]">SOAT</span>
+<span class="text-white font-bold text-sm">5,400h</span>
+</div>
+<div class="glass-card p-2 rounded flex flex-col items-center">
+<span class="text-tertiary font-label-mono text-[10px]">NOYOB SKINLAR</span>
+<span class="text-white font-bold text-sm">12 Rare</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-primary font-display-lg text-2xl">$1,499.00</span>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold active:scale-95 transition-all shadow-[0_0_20px_rgba(194,193,255,0.4)]">Sotib olish</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="mt-stack-gap-lg px-container-margin-mobile">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-white mb-6">Trenddagi buyumlar</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap-sm">
+<!-- Card 1 -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="A stunning digital artwork of a rare collectible game skin with glowing iridescent textures against a deep matte black background. The lighting is focused and dramatic, highlighting sharp edges and intricate details in shades of electric blue and neon violet. The overall look is ultra-modern and high-end, evoking a sense of exclusivity and technical mastery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBnxpfyBFWXNmYh79ZkLK-TLFiNNSOn3Vftf9pbEmh3C-vUInXoThr_oaUxmL2LPgcbVgrWmpYbiUEWWHvDRaNIiQFWuwdPn10KWJQU2lqDdcbLXa64oqccUtooBuHvhaC0PlhkNX14qZ7JhdJBGxrYvx_UPQRxi5J4qy6kjS46dW5lmMeK_ihyGfFYONeTpc5VTzV0eJtHJ9ElD87xC2zl2YqK0eXq5S-zhC7MGBLjtl_BwT3BJykCuLkDwFhwa64fi2gFWgJgIz2"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-400 text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[12px] font-bold">4.9</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest overflow-hidden border border-white/10">
+<img alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEq3y3NQBTkL2yHQZ9Y2wBsZt6mmIBd1NdVuZdU5f1vnVU6v3jHwmykBIlgRnfWQe4ORSmnSeS93QUfZs3lHJXsw2iNEPCpirWICsmhaTeR5ZLqpLzPbS13bfXyrV3cTAT146mglt5FNiTBA-RUHBRYtOsBXsCgvGbfQo_dbPbhdp-1jxyjISHazXNDNOTY5lS-tszXzTEODeTwW9nJy4D8NYAqIS0Fx4r3VNTf3JJFk6oXijR3Br9oFuRr5IkWGWZazAcXzTz_4FJ"/>
+</div>
+<span class="text-xs text-on-surface-variant">CyberMerchant_UZ</span>
+<span class="material-symbols-outlined text-primary text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h4 class="text-white font-bold mb-1">Dragon Lore Minimal Wear</h4>
+<p class="text-xs text-on-surface-variant mb-4">Instant trade lock-off, rare pattern #721</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="bg-gradient-to-r from-primary to-secondary text-on-primary px-3 py-1 rounded-md font-bold text-sm">$850.00</span>
+<button class="text-primary font-label-mono text-xs hover:underline">Batafsil</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="Macro photography of a sleek, black professional gaming controller with backlit buttons glowing in neon shades. The image has a shallow depth of field, focusing on the refined textures and futuristic design elements. Lighting is moody with sharp highlights that accentuate the premium build quality and ergonomic curves in a luxury digital aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwliGqSDbEUyMp6D3bHtbziJNiaaZ_UOmVr4090bLySro6Im8X9hdJSVDN0FloNeqKowqe6WxPE_msTvoCRaQUtTYj0KQmSnr84YaigYU_W57uHzelnd9iCVgasvzJtZAUYXEAuahN7SMhrd1ZEtf-V31dsrsXu3LRaEPA3nJX3V1jQXp87m1FtPsDbMmNC8Hjwwft-2Bkp61KqicrwvlBZzZwCYur81CIwiNMI0GOMP3v2gndCR8vLphAuCGipHsA8oiQb70QbMRz"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-400 text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[12px] font-bold">5.0</span>
+</div>
+</div>
+<div class="p-4 flex-grow flex flex-col">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest overflow-hidden border border-white/10">
+<img alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUI3yst7FeZBZE8Hm-FWzOJC2dYo8yqXR19zTtRkXCHdJiSv_4WNBJH_Y2E0S9Ynu0Tj0bVZiVZu4i8tt6i9kCqWo4FJh-F-0eqWiYWTq-Bg1_ewd9qD9BENltkfSPO77UnAr5amnKGkCg6J2VNpz3bKKVFFRII2-eKB44rZzeJqryCnHq4rYBxzVA99O9_vanmwsvbb5JErPIW2V7E-qV6OyXsh2El50zoxpmj2zAZXK4hibO2so6csgniB-t-dIXlTC2mVgO_bQv"/>
+</div>
+<span class="text-xs text-on-surface-variant">ZeroGravity_Store</span>
+</div>
+<h4 class="text-white font-bold mb-1">Overwatch 2 Master Acc</h4>
+<p class="text-xs text-on-surface-variant mb-4">All heroes unlocked, 400+ loot boxes unopened</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="bg-gradient-to-r from-primary to-secondary text-on-primary px-3 py-1 rounded-md font-bold text-sm">$225.00</span>
+<button class="text-primary font-label-mono text-xs hover:underline">Batafsil</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recently Sold -->
+<section class="mt-stack-gap-lg px-container-margin-mobile">
+<div class="glass-card rounded-lg p-4 bg-primary/5">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-label-mono text-label-mono text-primary flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bolt</span> JONLI SAVDOLAR</h3>
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<div class="space-y-3 overflow-hidden h-12 relative">
+<div class="flex items-center gap-3 animate-marquee"><span class="text-white text-xs font-bold whitespace-nowrap">Steam akkaunti • $145.00</span><span class="text-on-surface-variant text-[10px]">2 daqiqa oldin sotildi</span><div class="w-1 h-1 rounded-full bg-white/20"></div><span class="text-white text-xs font-bold whitespace-nowrap">Valorant skin to'plami • $89.00</span><span class="text-on-surface-variant text-[10px]">5 daqiqa oldin sotildi</span></div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-white/10 rounded-t-lg shadow-[0_-8px_24px_rgba(194,193,255,0.1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-mono text-label-mono">Asosiy</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(194,193,255,0.8)] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-mono text-label-mono">Kategoriyalar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-mono text-label-mono">Qidiruv</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-mono text-label-mono">Hamyon</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-mono text-label-mono">Profil</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-stack-gap-lg px-container-margin-desktop bg-surface-container-lowest border-t border-outline-variant mt-10 pb-32">
+<div class="flex flex-col md:flex-row justify-between items-center gap-stack-gap-sm">
+<div class="text-left">
+<span class="font-display-lg text-2xl text-primary block mb-2">DigitalHubUz</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 DigitalHubUz. Frontier Technology O'zbekiston.</p>
+</div>
+<div class="flex gap-4">
+<a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Maxfiylik</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Shartlar</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Yordam</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">API</a>
+</div>
+</div>
+</footer>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-flex;
+            animation: marquee 15s linear infinite;
+        }
+    </style>
+</body></html>
