@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import CommunityClient from '@/components/CommunityClient';
 
-export default async function CommunityPage({ params }: { params: { locale: string } }) {
+export default async function CommunityPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
   const cookieStore = await cookies();

@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/lib/prisma';
 import { Link } from '@/i18n/routing';
 
-export default async function CategoriesPage({ params }: { params: { locale: string } }) {
+export default async function CategoriesPage({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('Categories');
   const { locale } = await params;
 

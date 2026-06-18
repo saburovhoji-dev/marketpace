@@ -7,8 +7,8 @@ export default async function MarketPage({
   params,
   searchParams 
 }: { 
-  params: { locale: string },
-  searchParams: { category?: string, search?: string, type?: string }
+  params: Promise<{ locale: string }>,
+  searchParams: Promise<{ category?: string, search?: string, type?: string }>
 }) {
   const t = await getTranslations('Market');
   const { locale } = await params;

@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 
-export default async function ComingSoonPage({ params }: { params: { locale: string } }) {
+export default async function ComingSoonPage({ params }: { params: Promise<{ locale: string }> }) {
   return (
     <div className="py-32 flex flex-col items-center justify-center text-center space-y-8 px-container-margin-mobile">
       <div className="relative">

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { redirect } from 'next/navigation';
 import SellForm from '@/components/SellForm';
 
-export default async function SellPage({ params }: { params: { locale: string } }) {
+export default async function SellPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
   const cookieStore = await cookies();

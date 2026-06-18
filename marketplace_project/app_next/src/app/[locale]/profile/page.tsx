@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { redirect } from 'next/navigation';
 import LogoutButton from '@/components/LogoutButton';
 
-export default async function ProfilePage({ params }: { params: { locale: string } }) {
+export default async function ProfilePage({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('Profile');
   const { locale } = await params;
   

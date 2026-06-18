@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { redirect } from 'next/navigation';
 import WalletClient from '@/components/WalletClient';
 
-export default async function WalletPage({ params }: { params: { locale: string } }) {
+export default async function WalletPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   
   const cookieStore = await cookies();
