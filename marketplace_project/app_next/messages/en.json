@@ -1,0 +1,45 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "categories": "Categories",
+    "market": "Market",
+    "community": "Community",
+    "search": "Search",
+    "wallet": "Wallet",
+    "profile": "Profile",
+    "sell": "Sell"
+  },
+  "Hero": {
+    "badge": "Marketplace v2.0 Live",
+    "title": "Buy and Sell the Digital Future",
+    "description": "The premier platform for exchanging digital assets, software, and high-tech services.",
+    "searchPlaceholder": "Search bots, scripts, design...",
+    "startTrading": "Start Trading",
+    "onlineNow": "Online Now",
+    "safeDeals": "Safe Deals",
+    "instantDelivery": "Instant Delivery"
+  },
+  "Categories": {
+    "explore": "Explore",
+    "popular": "Trending Categories",
+    "viewAll": "View All"
+  },
+  "Auth": {
+    "login": "Log In",
+    "register": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit"
+  },
+  "Market": {
+    "title": "Digital Marketplace",
+    "description": "Browse and purchase top-tier digital assets from our community.",
+    "price": "Price",
+    "buy": "Buy Now"
+  },
+  "Profile": {
+    "title": "My Account",
+    "balance": "Balance",
+    "logout": "Log Out"
+  }
+}

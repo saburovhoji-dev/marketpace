@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  username  String    @unique
+  role      String    @default("user") // "user" or "admin"
+  balance   Float     @default(0.0)
+  createdAt DateTime  @default(now())
+  
+  products  Product[] // Products the user is selling
+  orders    Order[]   // Orders the user has placed
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
+  name_ru   String
+  name_uz   String
+  name_en   String
+  
+  products  Product[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  sellerId    Int
+  categoryId  Int
+  price       Float
+  title_ru    String
+  title_uz    String
+  title_en    String
+  desc_ru     String    @db.Text
+  desc_uz     String    @db.Text
+  desc_en     String    @db.Text
+  imageUrl    String?   @db.Text
+  salesCount  Int       @default(0)
+  type        String    @default("product") // "product" or "service"
+  createdAt   DateTime  @default(now())
+
+  seller      User      @relation(fields: [sellerId], references: [id])
+  category    Category  @relation(fields: [categoryId], references: [id])
+  orders      Order[]
+}
+
+model Order {
+  id        Int       @id @default(autoincrement())
+  buyerId   Int
+  productId Int
+  status    String    @default("completed") // "pending", "completed"
+  createdAt DateTime  @default(now())
+
+  buyer     User      @relation(fields: [buyerId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
+}

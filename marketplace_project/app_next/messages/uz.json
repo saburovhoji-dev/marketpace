@@ -1,0 +1,45 @@
+{
+  "Navigation": {
+    "home": "Bosh sahifa",
+    "categories": "Kategoriyalar",
+    "market": "Market",
+    "community": "Jamiyat",
+    "search": "Qidiruv",
+    "wallet": "Hamyon",
+    "profile": "Profil",
+    "sell": "Sotish"
+  },
+  "Hero": {
+    "badge": "Marketplace v2.0 Jonli",
+    "title": "Raqamli Kelajakni Sotib Oling va Soting",
+    "description": "Raqamli aktivlar, dasturiy ta'minot va yuqori texnologiyali xizmatlarni almashish uchun asosiy platforma.",
+    "searchPlaceholder": "Botlar, skriptlar, dizayn qidirish...",
+    "startTrading": "Savdoni boshlash",
+    "onlineNow": "Onlayn",
+    "safeDeals": "Xavfsiz bitimlar",
+    "instantDelivery": "Tezkor yetkazib berish"
+  },
+  "Categories": {
+    "explore": "O'rganish",
+    "popular": "Ommabop kategoriyalar",
+    "viewAll": "Barchasini ko'rish"
+  },
+  "Auth": {
+    "login": "Kirish",
+    "register": "Ro'yxatdan o'tish",
+    "email": "Email",
+    "password": "Parol",
+    "submit": "Yuborish"
+  },
+  "Market": {
+    "title": "Raqamli Bozor",
+    "description": "Jamiyatimizdan yuqori darajadagi raqamli aktivlarni ko'ring va sotib oling.",
+    "price": "Narxi",
+    "buy": "Sotib olish"
+  },
+  "Profile": {
+    "title": "Mening hisobim",
+    "balance": "Balans",
+    "logout": "Chiqish"
+  }
+}
