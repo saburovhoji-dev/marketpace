@@ -1,0 +1,5 @@
+{
+  "rootDirectory": "marketplace_project/app_next",
+  "buildCommand": "npx prisma generate && next build",
+  "framework": "nextjs"
+}
