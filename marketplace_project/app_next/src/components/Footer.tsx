@@ -40,6 +40,10 @@ export default async function Footer() {
           <span className="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
           <span className="font-label-mono text-label-mono mt-1">{t('market')}</span>
         </Link>
+        <Link className="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="/chat">
+          <span className="material-symbols-outlined" data-icon="chat">chat</span>
+          <span className="font-label-mono text-label-mono mt-1">{t('chat')}</span>
+        </Link>
         <Link className="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary/80 transition-colors active:scale-90 transition-transform" href="/wallet">
           <span className="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
           <span className="font-label-mono text-label-mono mt-1">{t('wallet')}</span>

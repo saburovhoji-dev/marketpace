@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/lib/prisma';
 import { Link } from '@/i18n/routing';
 import BuyButton from '@/components/BuyButton';
+import ContactSellerButton from '@/components/ContactSellerButton';
 
 export default async function MarketPage({ 
   params,
@@ -131,6 +132,9 @@ export default async function MarketPage({
                 <span className="text-primary font-headline-lg text-xl">${product.price}</span>
               </div>
               <BuyButton productId={product.id} label={t('buy')} />
+            </div>
+            <div className="flex items-center gap-2 mt-1">
+              <ContactSellerButton sellerId={product.sellerId} productId={product.id} label={locale === 'ru' ? 'Написать' : locale === 'uz' ? 'Yozish' : 'Write'} />
             </div>
             
             <div className="flex items-center gap-2 text-[10px] text-on-surface-variant font-label-mono">

@@ -55,6 +55,11 @@ export default async function RootLayout({
     >
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <style>{`/* Critical inline fallback */
+body,html{background-color:#131313;color:#e5e2e1;margin:0;padding:0;min-height:100vh}
+a{color:inherit;text-decoration:inherit}
+.glass-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1)}
+@supports not (aspect-ratio:1){.glass-card{background:rgba(255,255,255,0.03)}}`}</style>
       </head>
       <body className="min-h-full flex flex-col relative selection:bg-primary selection:text-on-primary">
         <NextIntlClientProvider messages={messages}>

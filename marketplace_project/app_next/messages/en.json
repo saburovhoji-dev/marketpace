@@ -7,7 +7,8 @@
     "search": "Search",
     "wallet": "Wallet",
     "profile": "Profile",
-    "sell": "Sell"
+    "sell": "Sell",
+    "chat": "Chat"
   },
   "Hero": {
     "badge": "Marketplace v2.0 Live",

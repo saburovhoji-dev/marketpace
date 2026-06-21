@@ -2,6 +2,7 @@ import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/routing';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import NotificationBell from '@/components/NotificationBell';
 
 export default async function Header() {
   const t = await getTranslations('Navigation');
@@ -35,6 +36,7 @@ export default async function Header() {
             {user && (
               <>
                 <Link className="hover:text-primary transition-all duration-300" href="/sell">{t('sell')}</Link>
+                <Link className="hover:text-primary transition-all duration-300" href="/chat">{t('chat')}</Link>
                 <Link className="hover:text-primary transition-all duration-300" href="/wallet">{t('wallet')}</Link>
                 <Link className="hover:text-primary transition-all duration-300" href="/profile">{t('profile')}</Link>
               </>
@@ -51,7 +53,7 @@ export default async function Header() {
           
           {user ? (
             <div className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-on-surface-variant hover:bg-white/5 p-2 rounded-full transition-all duration-300 cursor-pointer" data-icon="notifications">notifications</span>
+              <NotificationBell />
               <Link href="/profile" className="flex items-center gap-3 glass-card py-1.5 pl-1.5 pr-4 rounded-full border border-primary/20 hover:border-primary/50 transition-all group">
                 <div className="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
                   <img className="w-full h-full object-cover" alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPbpQuTh59C0cCW8NTLHgsnzjIwfyC8o7GTFIdBdtSLuDF-0Yyiz4VvEn_BPYIKRheWPTICcuTMoR0-e_m-WnoOYm3i29YkGYXZisinlcTUh2HF3RwT6EkCpFr8InyYnNjo0-Gpru0T9Q666mnXUQGaeANetPwqDakYUfr5v7uHbTKS7qF-I7oWD6_Vk3A6_bB6Hs8dRVaRcHOUWEz0Ez34ppH6VxTiWIyiD-UsI7rgmPOxbfeta8aduLPnhIWJ814EubnVi-ZQCuw"/>

@@ -65,6 +65,28 @@ export async function POST(req: Request) {
         data: { salesCount: { increment: 1 } }
       });
 
+      // Create notifications
+      await tx.notification.createMany({
+        data: [
+          {
+            userId: userId,
+            type: 'purchase_bought',
+            title: 'Покупка совершена',
+            body: `Вы купили "${product.title_ru || product.title_en}" за $${product.price}`,
+            link: `/profile`,
+            createdAt: new Date()
+          },
+          {
+            userId: product.sellerId,
+            type: 'purchase_sold',
+            title: 'Товар продан',
+            body: `Ваш товар "${product.title_ru || product.title_en}" куплен за $${product.price}`,
+            link: `/profile`,
+            createdAt: new Date()
+          }
+        ]
+      });
+
       return order;
     });
 
